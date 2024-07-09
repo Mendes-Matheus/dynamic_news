@@ -1,24 +1,14 @@
 const noticias = [
-    { id: 1, titulo: "Título da Notícia 1", conteudo: "Conteúdo da Notícia 1." },
-    { id: 2, titulo: "Título da Notícia 2", conteudo: "Conteúdo da Notícia 2." },
-    { id: 3, titulo: "Título da Notícia 3", conteudo: "Conteúdo da Notícia 3." },
-    { id: 4, titulo: "Título da Notícia 4", conteudo: "Conteúdo da Notícia 4." },
-    { id: 5, titulo: "Título da Notícia 5", conteudo: "Conteúdo da Notícia 5." },
-    { id: 6, titulo: "Título da Notícia 6", conteudo: "Conteúdo da Notícia 6." },
-    { id: 7, titulo: "Título da Notícia 7", conteudo: "Conteúdo da Notícia 7." },
-    { id: 8, titulo: "Título da Notícia 8", conteudo: "Conteúdo da Notícia 8." },
-    { id: 9, titulo: "Título da Notícia 9", conteudo: "Conteúdo da Notícia 9." },
-    { id: 10, titulo: "Título da Notícia 10", conteudo: "Conteúdo da Notícia 10." },
-    { id: 11, titulo: "Título da Notícia 11", conteudo: "Conteúdo da Notícia 11." },
-    { id: 12, titulo: "Título da Notícia 12", conteudo: "Conteúdo da Notícia 12." },
-    { id: 13, titulo: "Título da Notícia 13", conteudo: "Conteúdo da Notícia 13." },
-    { id: 14, titulo: "Título da Notícia 14", conteudo: "Conteúdo da Notícia 14." },
-    { id: 15, titulo: "Título da Notícia 15", conteudo: "Conteúdo da Notícia 15." },
-    { id: 16, titulo: "Título da Notícia 16", conteudo: "Conteúdo da Notícia 16." },
-    { id: 17, titulo: "Título da Notícia 17", conteudo: "Conteúdo da Notícia 17." },
-    { id: 18, titulo: "Título da Notícia 18", conteudo: "Conteúdo da Notícia 18." },
-    { id: 19, titulo: "Título da Notícia 19", conteudo: "Conteúdo da Notícia 19." },
-    { id: 20, titulo: "Título da Notícia 20", conteudo: "Conteúdo da Notícia 20." },
+    
+    { id: 1, titulo: "Título da Notícia 1", resumo: "Resumo da Notícia 1.", conteudo: "Conteúdo da Notícia 1.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 2, titulo: "Título da Notícia 2", resumo: "Resumo da Notícia 2.", conteudo: "Conteúdo da Notícia 2.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 3, titulo: "Título da Notícia 3", resumo: "Resumo da Notícia 3.", conteudo: "Conteúdo da Notícia 3.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 4, titulo: "Título da Notícia 4", resumo: "Resumo da Notícia 4.", conteudo: "Conteúdo da Notícia 4.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 5, titulo: "Título da Notícia 5", resumo: "Resumo da Notícia 5.", conteudo: "Conteúdo da Notícia 5.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 6, titulo: "Título da Notícia 6", resumo: "Resumo da Notícia 6.", conteudo: "Conteúdo da Notícia 6.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 7, titulo: "Título da Notícia 7", resumo: "Resumo da Notícia 7.", conteudo: "Conteúdo da Notícia 7.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    { id: 8, titulo: "Título da Notícia 8", resumo: "Resumo da Notícia 8.", conteudo: "Conteúdo da Notícia 8.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
+    // Adicione mais notícias conforme necessário
 ];
 
 function carregarNoticias() {
@@ -34,26 +24,32 @@ function carregarNoticias() {
 
         const cardLink = document.createElement('a');
         cardLink.href = `noticia.html?id=${noticia.id}`;
-        cardLink.className = 'text-decoration-none text-dark'; // Remove underline e mantém o texto escuro
-        cardLink.style.display = 'block'; // Faz com que o link cubra toda a área do card
+        cardLink.className = 'text-decoration-none text-dark';
+        cardLink.style.display = 'block';
 
         const card = document.createElement('div');
         card.className = 'card h-100';
 
+        const cardImg = document.createElement('img');
+        cardImg.src = noticia.imagem;
+        cardImg.className = 'card-img-top';
+        cardImg.alt = noticia.titulo;
+
         const cardBody = document.createElement('div');
         cardBody.className = 'card-body';
 
-        const cardTitle = document.createElement('h5');
+        const cardTitle = document.createElement('h3');
         cardTitle.className = 'card-title';
         cardTitle.textContent = noticia.titulo;
 
         const cardText = document.createElement('p');
         cardText.className = 'card-text';
-        cardText.textContent = noticia.conteudo;
+        cardText.textContent = noticia.resumo;
 
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
 
+        card.appendChild(cardImg); // Adiciona a imagem ao card antes do corpo do card
         card.appendChild(cardBody);
         cardLink.appendChild(card);
         col.appendChild(cardLink);
