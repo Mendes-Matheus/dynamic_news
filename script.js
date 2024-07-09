@@ -19,7 +19,6 @@ const noticias = [
     { id: 18, titulo: "Título da Notícia 18", conteudo: "Conteúdo da Notícia 18." },
     { id: 19, titulo: "Título da Notícia 19", conteudo: "Conteúdo da Notícia 19." },
     { id: 20, titulo: "Título da Notícia 20", conteudo: "Conteúdo da Notícia 20." },
-    // Adicione mais notícias conforme necessário
 ];
 
 function carregarNoticias() {
@@ -31,15 +30,20 @@ function carregarNoticias() {
 
     noticias.forEach(noticia => {
         const col = document.createElement('div');
-        col.className = 'col-md-4 mb-4'; // Define a coluna com largura md-4 e margem inferior mb-4
+        col.className = 'col-md-4 mb-4';
+
+        const cardLink = document.createElement('a');
+        cardLink.href = `noticia.html?id=${noticia.id}`;
+        cardLink.className = 'text-decoration-none text-dark'; // Remove underline e mantém o texto escuro
+        cardLink.style.display = 'block'; // Faz com que o link cubra toda a área do card
 
         const card = document.createElement('div');
-        card.className = 'card h-100'; // Define o card com altura 100%
+        card.className = 'card h-100';
 
         const cardBody = document.createElement('div');
         cardBody.className = 'card-body';
 
-        const cardTitle = document.createElement('h2');
+        const cardTitle = document.createElement('h5');
         cardTitle.className = 'card-title';
         cardTitle.textContent = noticia.titulo;
 
@@ -47,17 +51,12 @@ function carregarNoticias() {
         cardText.className = 'card-text';
         cardText.textContent = noticia.conteudo;
 
-        const cardLink = document.createElement('a');
-        cardLink.href = `noticia.html?id=${noticia.id}`;
-        cardLink.className = 'btn btn-primary';
-        cardLink.textContent = 'Ler mais';
-
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
-        cardBody.appendChild(cardLink);
 
         card.appendChild(cardBody);
-        col.appendChild(card);
+        cardLink.appendChild(card);
+        col.appendChild(cardLink);
 
         gridNoticias.appendChild(col);
     });
