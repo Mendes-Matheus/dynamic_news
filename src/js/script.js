@@ -23,7 +23,7 @@ function carregarNoticias() {
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `noticia/noticia.html?id=${noticia.id}`;
+        cardLink.href = `/src/noticia/noticia.html?id=${noticia.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -63,7 +63,7 @@ function carregarNoticias() {
 function carregarNoticia() {
     const params = new URLSearchParams(window.location.search);
     const noticiaId = parseInt(params.get('id'));
-    const noticia = noticias.find(n => n.id === noticiaId);
+    const noticia = arrayNoticias.find(n => n.id === noticiaId);
 
     if (noticia) {
         document.getElementById('noticia-titulo').textContent = noticia.titulo;

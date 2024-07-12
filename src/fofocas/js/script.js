@@ -32,7 +32,7 @@ function carregaPolitica() {
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `../../fofoca/fofoca.html?id=${fofoca.id}`;
+        cardLink.href = `/src/noticia/noticia.html?id=${fofoca.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -72,7 +72,7 @@ function carregaPolitica() {
 function carregarFofoca() {
     const params = new URLSearchParams(window.location.search);
     const fofocaId = parseInt(params.get('id'));
-    const fofoca = fofocas.find(f => f.id === fofocaId);
+    const fofoca = arrayFofocas.find(f => f.id === fofocaId);
 
     if (fofoca) {
         document.getElementById('fofoca-titulo').textContent = fofoca.titulo;

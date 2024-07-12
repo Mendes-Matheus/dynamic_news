@@ -22,7 +22,7 @@ function carregaPolitica() {
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `../../politica/politica.html?id=${politica.id}`;
+        cardLink.href = `/src/noticia/noticia.html?id=${politica.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -59,10 +59,10 @@ function carregaPolitica() {
     console.log('Lista de politicas carregada com sucesso.');
 }
 
-function carregarpolitica() {
+function carregarPolitica() {
     const params = new URLSearchParams(window.location.search);
     const politicaId = parseInt(params.get('id'));
-    const politica = politicas.find(f => f.id === politicaId);
+    const politica = arrayPolitica.find(f => f.id === politicaId);
 
     if (politica) {
         document.getElementById('politica-titulo').textContent = politica.titulo;
@@ -71,8 +71,6 @@ function carregarpolitica() {
         console.error('politica não encontrada.');
     }
 }
-
-// ...
 
 
 function carregarHeaderFooter() {
