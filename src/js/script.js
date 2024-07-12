@@ -1,15 +1,15 @@
-const noticias = [
-    
-    { id: 1, titulo: "Título da Notícia 1", resumo: "Resumo da Notícia 1.", conteudo: "Conteúdo da Notícia 1.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 2, titulo: "Título da Notícia 2", resumo: "Resumo da Notícia 2.", conteudo: "Conteúdo da Notícia 2.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 3, titulo: "Título da Notícia 3", resumo: "Resumo da Notícia 3.", conteudo: "Conteúdo da Notícia 3.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 4, titulo: "Título da Notícia 4", resumo: "Resumo da Notícia 4.", conteudo: "Conteúdo da Notícia 4.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 5, titulo: "Título da Notícia 5", resumo: "Resumo da Notícia 5.", conteudo: "Conteúdo da Notícia 5.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 6, titulo: "Título da Notícia 6", resumo: "Resumo da Notícia 6.", conteudo: "Conteúdo da Notícia 6.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 7, titulo: "Título da Notícia 7", resumo: "Resumo da Notícia 7.", conteudo: "Conteúdo da Notícia 7.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    { id: 8, titulo: "Título da Notícia 8", resumo: "Resumo da Notícia 8.", conteudo: "Conteúdo da Notícia 8.", imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg" },
-    // Adicione mais notícias conforme necessário
-];
+const arrayNoticias = new Array();
+
+for (let i = 0; i < 10; i++) {
+    arrayNoticias.push({
+        id: i + 1, // incrementa o ID para cada notícia
+        titulo: `Título da Notícia ${i + 1}`,
+        resumo: `Resumo da Notícia ${i + 1}.`,
+        conteudo: `Conteúdo da Notícia ${i + 1}.`,
+        imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg"
+    });
+}
+
 
 function carregarNoticias() {
     const gridNoticias = document.getElementById('noticias-grid');
@@ -18,12 +18,12 @@ function carregarNoticias() {
         return;
     }
 
-    noticias.forEach(noticia => {
+    arrayNoticias.forEach(noticia => {
         const col = document.createElement('div');
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `/noticia/noticia.html?id=${noticia.id}`;
+        cardLink.href = `noticia/noticia.html?id=${noticia.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -72,13 +72,14 @@ function carregarNoticia() {
         console.error('Notícia não encontrada.');
     }
 }
+
 function carregarHeaderFooter() {
     let headerContent = sessionStorage.getItem('header');
     if (headerContent) {
         document.getElementById('header-placeholder').innerHTML = headerContent;
         console.log('Header carregado do sessionStorage.');
     } else {
-        $('#header-placeholder').load('header/header.html', function(response, status, xhr) {
+        $('#header-placeholder').load('header.html', function(response, status, xhr) {
             if (status == "error") {
                 console.error("Erro ao carregar o header: " + xhr.status + " " + xhr.statusText);
             } else {
@@ -94,7 +95,7 @@ function carregarHeaderFooter() {
         document.getElementById('footer-placeholder').innerHTML = footerContent;
         console.log('Footer carregado do sessionStorage.');
     } else {
-        $('#footer-placeholder').load('footer/footer.html', function(response, status, xhr) {
+        $('#footer-placeholder').load('footer.html', function(response, status, xhr) {
             if (status == "error") {
                 console.error("Erro ao carregar o footer: " + xhr.status + " " + xhr.statusText);
             } else {
@@ -106,15 +107,22 @@ function carregarHeaderFooter() {
     }
 }
 
-carregarHeaderFooter();
+function redirectToIndex() {
+    window.location.href = 'index.html';
+}
 
+function redirectToNoticias() {
+    window.location.href = 'noticias.html';
+}
 
-document.addEventListener('DOMContentLoaded', () => {
+// carregarHeaderFooter();
+
+document.addEventListener("DOMContentLoaded", function() {
     carregarHeaderFooter();
 
     if (window.location.pathname.includes('noticia.html')) {
         carregarNoticia();
-    } else if (window.location.pathname.includes('index.html')) {
+    } else if (window.location.pathname.includes('index.html') || window.location.pathname === '/') {
         carregarNoticias();
     }
 
