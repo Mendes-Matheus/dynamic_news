@@ -23,7 +23,7 @@ function carregarNoticias() {
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `noticia.html?id=${noticia.id}`;
+        cardLink.href = `/noticia/noticia.html?id=${noticia.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -72,38 +72,42 @@ function carregarNoticia() {
         console.error('Notícia não encontrada.');
     }
 }
-
 function carregarHeaderFooter() {
-    let headerContent = localStorage.getItem('header');
+    let headerContent = sessionStorage.getItem('header');
     if (headerContent) {
         document.getElementById('header-placeholder').innerHTML = headerContent;
-        console.log('Header carregado do localStorage.');
+        console.log('Header carregado do sessionStorage.');
     } else {
-        $('#header-placeholder').load('header.html', function(response, status, xhr) {
+        $('#header-placeholder').load('header/header.html', function(response, status, xhr) {
             if (status == "error") {
                 console.error("Erro ao carregar o header: " + xhr.status + " " + xhr.statusText);
             } else {
-                localStorage.setItem('header', response);
-                console.log('Header carregado via AJAX e salvo no localStorage.');
+                sessionStorage.setItem('header', response);
+                document.getElementById('header-placeholder').innerHTML = response;
+                console.log('Header carregado via AJAX e salvo no sessionStorage.');
             }
         });
     }
 
-    let footerContent = localStorage.getItem('footer');
+    let footerContent = sessionStorage.getItem('footer');
     if (footerContent) {
         document.getElementById('footer-placeholder').innerHTML = footerContent;
-        console.log('Footer carregado do localStorage.');
+        console.log('Footer carregado do sessionStorage.');
     } else {
-        $('#footer-placeholder').load('footer.html', function(response, status, xhr) {
+        $('#footer-placeholder').load('footer/footer.html', function(response, status, xhr) {
             if (status == "error") {
                 console.error("Erro ao carregar o footer: " + xhr.status + " " + xhr.statusText);
             } else {
-                localStorage.setItem('footer', response);
-                console.log('Footer carregado via AJAX e salvo no localStorage.');
+                sessionStorage.setItem('footer', response);
+                document.getElementById('footer-placeholder').innerHTML = response;
+                console.log('Footer carregado via AJAX e salvo no sessionStorage.');
             }
         });
     }
 }
+
+carregarHeaderFooter();
+
 
 document.addEventListener('DOMContentLoaded', () => {
     carregarHeaderFooter();
