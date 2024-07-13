@@ -1,28 +1,38 @@
-const arrayPolitica = new Array();
+// const fofocas = [
+//     { id: 1, titulo: "Título da Fofoca 1", resumo: "Resumo da Fofoca 1.", conteudo: "Conteúdo da Fofoca 1.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 2, titulo: "Título da Fofoca 2", resumo: "Resumo da Fofoca 2.", conteudo: "Conteúdo da Fofoca 2.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 3, titulo: "Título da Fofoca 3", resumo: "Resumo da Fofoca 3.", conteudo: "Conteúdo da Fofoca 3.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 4, titulo: "Título da Fofoca 4", resumo: "Resumo da Fofoca 4.", conteudo: "Conteúdo da Fofoca 4.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 5, titulo: "Título da Fofoca 5", resumo: "Resumo da Fofoca 5.", conteudo: "Conteúdo da Fofoca 5.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 6, titulo: "Título da Fofoca 6", resumo: "Resumo da Fofoca 6.", conteudo: "Conteúdo da Fofoca 5.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+//     { id: 7, titulo: "Título da Fofoca 7", resumo: "Resumo da Fofoca 7.", conteudo: "Conteúdo da Fofoca 7.", imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg" },
+// ];
+
+const arrayFofocas = new Array();
 
 for (let i = 0; i < 10; i++) {
-    arrayPolitica.push({
-        id: i + 1, // incrementa o ID para cada politica
-        titulo: `Título da Noticia ${i + 1}`,
-        resumo: `Resumo da Noticia ${i + 1}.`,
-        conteudo: `Conteúdo da Noticia ${i + 1}.`,
-        imagem: "https://i1.wp.com/www.esmaelmorais.com.br/wp-content/uploads/2023/06/lula-faz-l.jpg"
+    arrayFofocas.push({
+        id: i + 1, // incrementa o ID para cada fofoca
+        titulo: `Título da Fofoca ${i + 1}`,
+        resumo: `Resumo da Fofoca ${i + 1}.`,
+        conteudo: `Conteúdo da Fofoca ${i + 1}.`,
+        imagem: "https://www.strepro.com.br/storage/bulls/Js0XH5tYdugKfsxWGezGHgN8maANww43QWi7w2g5.jpg"
     });
 }
 
 function carregaPolitica() {
-    const gridPolitica = document.getElementById('politica-grid');
-    if (!gridPolitica) {
-        console.error('Elemento "politica-grid" não encontrado.');
+    const gridFofocas = document.getElementById('fofocas-grid');
+    if (!gridFofocas) {
+        console.error('Elemento "fofocas-grid" não encontrado.');
         return;
     }
 
-    arrayPolitica.forEach(politica => {
+    arrayFofocas.forEach(fofoca => {
         const col = document.createElement('div');
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `/src/noticia/noticia.html?id=${politica.id}`;
+        cardLink.href = `/src/pages/noticia/noticia.html?id=${fofoca.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
@@ -30,20 +40,20 @@ function carregaPolitica() {
         card.className = 'card h-100';
 
         const cardImg = document.createElement('img');
-        cardImg.src = politica.imagem;
+        cardImg.src = fofoca.imagem;
         cardImg.className = 'card-img-top';
-        cardImg.alt = politica.titulo;
+        cardImg.alt = fofoca.titulo;
 
         const cardBody = document.createElement('div');
         cardBody.className = 'card-body';
 
         const cardTitle = document.createElement('h3');
         cardTitle.className = 'card-title';
-        cardTitle.textContent = politica.titulo;
+        cardTitle.textContent = fofoca.titulo;
 
         const cardText = document.createElement('p');
         cardText.className = 'card-text';
-        cardText.textContent = politica.resumo;
+        cardText.textContent = fofoca.resumo;
 
         cardBody.appendChild(cardTitle);
         cardBody.appendChild(cardText);
@@ -53,24 +63,26 @@ function carregaPolitica() {
         cardLink.appendChild(card);
         col.appendChild(cardLink);
 
-        gridPolitica.appendChild(col);
+        gridFofocas.appendChild(col);
     });
 
-    console.log('Lista de politicas carregada com sucesso.');
+    console.log('Lista de fofocas carregada com sucesso.');
 }
 
-function carregarPolitica() {
+function carregarFofoca() {
     const params = new URLSearchParams(window.location.search);
-    const politicaId = parseInt(params.get('id'));
-    const politica = arrayPolitica.find(f => f.id === politicaId);
+    const fofocaId = parseInt(params.get('id'));
+    const fofoca = arrayFofocas.find(f => f.id === fofocaId);
 
-    if (politica) {
-        document.getElementById('politica-titulo').textContent = politica.titulo;
-        document.getElementById('politica-conteudo').textContent = politica.conteudo;
+    if (fofoca) {
+        document.getElementById('fofoca-titulo').textContent = fofoca.titulo;
+        document.getElementById('fofoca-conteudo').textContent = fofoca.conteudo;
     } else {
-        console.error('politica não encontrada.');
+        console.error('Fofoca não encontrada.');
     }
 }
+
+// ...
 
 
 function carregarHeaderFooter() {

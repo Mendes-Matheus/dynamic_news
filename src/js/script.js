@@ -23,7 +23,7 @@ function carregarNoticias() {
         col.className = 'col-md-4 mb-4';
 
         const cardLink = document.createElement('a');
-        cardLink.href = `/src/noticia/noticia.html?id=${noticia.id}`;
+        cardLink.href = `/src/pages/noticia/noticia.html?id=${noticia.id}`;
         cardLink.className = 'text-decoration-none text-dark';
         cardLink.style.display = 'block';
 
