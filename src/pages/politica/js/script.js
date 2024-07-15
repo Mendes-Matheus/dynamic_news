@@ -74,28 +74,22 @@ function carregarPolitica() {
 
 
 function carregarHeaderFooter() {
-    let headerContent = sessionStorage.getItem('header');
-    if (headerContent) {
-        document.getElementById('header-placeholder').innerHTML = headerContent;
-        console.log('Header carregado do sessionStorage.');
-    } else {
-        $('#header-placeholder').load('header.html', function (response, status, xhr) {
-            if (status == "error") {
-                console.error("Erro ao carregar o header: " + xhr.status + " " + xhr.statusText);
-            } else {
-                sessionStorage.setItem('header', response);
-                document.getElementById('header-placeholder').innerHTML = response;
-                console.log('Header carregado via AJAX e salvo no sessionStorage.');
-            }
-        });
-    }
-
+    $('#header-placeholder').load('/src/header.html', function (response, status, xhr) {
+        if (status == "error") {
+            console.error("Erro ao carregar o header: " + xhr.status + " " + xhr.statusText);
+        } else {
+            sessionStorage.setItem('header', response);
+            document.getElementById('header-placeholder').innerHTML = response;
+            console.log('Header carregado via AJAX e salvo no sessionStorage.');
+        }
+    });
+    
     let footerContent = sessionStorage.getItem('footer');
     if (footerContent) {
         document.getElementById('footer-placeholder').innerHTML = footerContent;
         console.log('Footer carregado do sessionStorage.');
     } else {
-        $('#footer-placeholder').load('footer.html', function (response, status, xhr) {
+        $('#footer-placeholder').load('/src/footer.html', function (response, status, xhr) {
             if (status == "error") {
                 console.error("Erro ao carregar o footer: " + xhr.status + " " + xhr.statusText);
             } else {
@@ -105,10 +99,9 @@ function carregarHeaderFooter() {
             }
         });
     }
+    headerContent = sessionStorage.clear();
+    footerContent = sessionStorage.clear();
 }
-
-
-// carregarHeaderFooter();
 
 document.addEventListener("DOMContentLoaded", function () {
     carregarHeaderFooter();
